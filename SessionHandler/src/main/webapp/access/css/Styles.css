@@ -1,0 +1,16 @@
+@charset "ISO-8859-1";
+body {
+	min-height: 100vh;
+/* 	background-image: linear-gradient(120deg,#2980b9,#8e44ad);
+ */	margin: 0;
+	padding: 0;
+	background-color: lightblue;
+}
+
+label {
+	font-weight: bold;	
+}
+
+.errorMessage {
+	color: red;
+}

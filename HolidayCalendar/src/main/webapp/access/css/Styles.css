@@ -1,0 +1,34 @@
+@charset "ISO-8859-1";
+body {
+	min-height: 100vh;
+	background-image: linear-gradient(120deg, #2980b9, #8e44ad);
+
+ 	/* background-color: #2980b9; */
+ 	}
+
+table, td {
+	text-align: center;
+/* 	background-image: linear-gradient(120deg, #2980b9, #8e44ad); 
+ */}
+ 
+
+.myTable{
+	width: 50%;
+	display: table;
+	margin: auto;
+}
+
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+	
+	background-image: linear-gradient(120deg, #2980b9, #8e44ad);
+/*   	background-color: #2980b9;
+ */}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: lightblue !important;
+}
+
+/* table tr td, table tr th {
+	background-color: trasnparent; 
+} */
