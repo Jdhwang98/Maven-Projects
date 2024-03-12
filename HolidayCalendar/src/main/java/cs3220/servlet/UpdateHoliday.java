@@ -83,15 +83,16 @@ public class UpdateHoliday extends HttpServlet {
 		out.println("<label for='holidayDate'>Holiday Date: </label>");
 		
 		out.println("<select id='id' name='day'>");
-		out.println("<option value='1'>1 </option>");
-		out.println("<option value='2'>2 </option>");
-		out.println("<option value='3'>3 </option>");
-		out.println("<option value='4'>4 </option>");
-		out.println("<option value='5'>5 </option>");
-		out.println("<option value='6'>6 </option>");
-		out.println("<option value='7'>7 </option>");
-		out.println("<option value='8'>8 </option>");
-		out.println("<option value='9'>9 </option>");
+		out.println("<option value='" + entry.getHolidayDate().substring(8,10) +"'> " + entry.getHolidayDate().substring(8,10) + " </option>");
+		out.println("<option value='01'>01 </option>");
+		out.println("<option value='02'>02 </option>");
+		out.println("<option value='03'>03 </option>");
+		out.println("<option value='04'>04 </option>");
+		out.println("<option value='05'>05 </option>");
+		out.println("<option value='06'>06 </option>");
+		out.println("<option value='07'>07 </option>");
+		out.println("<option value='08'>08 </option>");
+		out.println("<option value='09'>09 </option>");
 		out.println("<option value='10'>10 </option>");
 		out.println("<option value='11'>11 </option>");
 		out.println("<option value='12'>12 </option>");
@@ -117,6 +118,7 @@ public class UpdateHoliday extends HttpServlet {
 		
 		out.println("</select>");
 		out.println("<select id='holidayDate' name='month'>");
+		out.println("<option value='"+ entry.getHolidayDate().substring(5,7) +"'>"+ entry.getHolidayDate().substring(5,7) +"</option>");
 		out.println("<option value='01'>January</option>");
 		out.println("<option value='02'>Febuary</option>");
 		out.println("<option value='03'>March</option>");
@@ -132,6 +134,7 @@ public class UpdateHoliday extends HttpServlet {
 		out.println("</select>");
 			
 		out.println("<select id='holidayDate' name='year'>");
+		out.println("<option value='"+ entry.getHolidayDate().substring(0,4) +"'>"+entry.getHolidayDate().substring(0,4) +"</option>");
 		out.println("<option value='2024'>2024</option>");
 		out.println("<option value='2023'>2023</option>");
 		out.println("<option value='2022'>2022</option>");
@@ -143,7 +146,7 @@ public class UpdateHoliday extends HttpServlet {
 		out.println("<br></br>");
 
 		out.println("<label for='holiday'>Holiday Name:<label>");
-		out.println("<input type='text' id='holiday' name='holidayName' value=' '>");
+		out.println("<input type='text' id='holiday' name='holidayName' value='"+ entry.getHoliday() + "'>");
 		
 		
 	
@@ -169,6 +172,10 @@ public class UpdateHoliday extends HttpServlet {
 		String day = request.getParameter("day");
 		String month = request.getParameter("month");
 		String year = request.getParameter("year");
+		
+		entry.setDay(day);
+		entry.setMonth(month);
+		entry.setYear(year);
 		
 		String dateString = String.format("%s-%s-%s", year, month, day);
 		

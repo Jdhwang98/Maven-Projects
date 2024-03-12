@@ -140,8 +140,13 @@ public class AddHoliday extends HttpServlet {
 		String month = request.getParameter("month");
 		String year = request.getParameter("year");
 		
+		
 		String dateString = String.format("%s-%s-%s", year, month, day);
 		HolidayCalendarEntry entry = new HolidayCalendarEntry(dateString, holidayName);
+		
+		entry.setDay(request.getParameter("day"));
+		entry.setMonth(request.getParameter("month"));
+		entry.setYear(request.getParameter("year"));
 		
 		List<HolidayCalendarEntry> entries = (List<HolidayCalendarEntry>) getServletContext().getAttribute("entries");
 		entries.add(entry);

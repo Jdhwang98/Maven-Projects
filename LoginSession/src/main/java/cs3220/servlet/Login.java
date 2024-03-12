@@ -52,7 +52,10 @@ public class Login extends HttpServlet {
 		out.println("<div class='card-body'>");
 		out.println("<div class='col col-lg-2'>");
 		out.println("<div>Hello Testing </div>");
+		out.println("<form>");
 		
+		
+		out.println("</form>");//form ending
 		out.println("</div>");//div for card col
 		out.println("</div>");//div for card body
 		out.println("</div>");//div for card class
