@@ -1,0 +1,54 @@
+body {
+	margin: 0;
+    padding: 0;
+    background-image: linear-gradient(120deg, #2980b9, #8e44ad);
+    height: 100vh;
+    overflow: hidden;
+}
+
+button {
+	margin: auto;
+	padding-top: 100px;
+}
+
+p {
+	color: white;
+}
+
+h2 {
+	color: white;
+}
+
+th td {
+	margin: auto;
+}
+
+tr {
+	border-bottom: 1px solid black;
+}
+
+tr:nth-child(even) {
+	background-color: #F2F2F2;
+}
+
+tr:hover{
+	background-color: lightblue;
+}
+
+table {
+	margin: auto;
+	border-collapse: collapse;
+	width: 50%;
+}
+
+.textCenter {
+	text-align: center;
+}
+
+.card {
+	margin: auto; /* Added */
+    float: none; /* Added */
+    width: 400px;
+    margin-bottom: 10px; /* Added */
+	background-color: rgb(59, 58, 58);
+}

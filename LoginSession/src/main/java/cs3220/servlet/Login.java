@@ -2,8 +2,10 @@ package cs3220.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,6 +29,14 @@ public class Login extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    public void init(ServletConfig config) throws ServletException {
+    	super.init(config);
+    	List<UserEntry> users = new ArrayList<UserEntry>();
+    	users.add(new UserEntry("1","john","1"));
+    	
+    	getServletContext().setAttribute("users", users);
+    	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,32 +44,20 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendRedirect("index.jsp");
 		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String destination = "index.jsp";
 		String errorMessage = null;
-		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		//out.println("<>");
-		out.println("<html><head><title>Login</title>");
-		out.println("<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN\" crossorigin=\"anonymous\">");
-		out.println("<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL\" crossorigin=\"anonymous\"></script>\n");
-		out.println("<link href=\"./access/css/Styles.css\" rel=\"stylesheet\" type=\"text/css\">\n");
-		out.println("</head><body>");
-		out.println("<div class ='d-flex justify-content-center'>");
-		out.println("<div class='card'>");
-		out.println("<div class='card-body'>");
-		out.println("<div class='col col-lg-2'>");
-		out.println("<div>Hello Testing </div>");
-		out.println("<form>");
-		
-		
-		out.println("</form>");//form ending
-		out.println("</div>");//div for card col
-		out.println("</div>");//div for card body
-		out.println("</div>");//div for card class
-		out.println("<div>");//div for flex
 		
 		if (email != null && password != null) {
 			List<UserEntry> users = (List<UserEntry>) getServletContext().getAttribute("users");
@@ -68,7 +66,7 @@ public class Login extends HttpServlet {
 					HttpSession session = request.getSession(true);
 					session.setAttribute("name", user.getName());
 					request.setAttribute("name", user.getName());
-					destination = "LoginSuccess.jsp";
+					destination = "Download.jsp";
 					break;
 				} else {
 					continue;
@@ -78,16 +76,9 @@ public class Login extends HttpServlet {
 		} else {
 			errorMessage = "User not found";
 		}
+
 		request.setAttribute("errorMessage", errorMessage);
 		request.getRequestDispatcher(destination).forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
