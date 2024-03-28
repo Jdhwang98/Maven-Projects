@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>s
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Holiday Calendar</title>
@@ -22,9 +22,9 @@
 			<tbody>
 				<#items as entry>
 					<tr>
-						<td scope="row">${entry.holidayDate}</td>
+						<td scope="row">${entry.holidayDate.format("dd MMMM yyyy")}</td>
 						<td>${entry.holidayName}</td>
-						<td><a href="updateHoliday?id=">Update</a> | <a href="#">Delete<a></td>
+						<td><a href="updateHoliday/${entry.id}">Update</a> | <a href="index/${entry.id}">Delete</a></td>
 					</tr>
 				</#items>
 			</tbody>

@@ -2,6 +2,8 @@ package cs3220.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -149,7 +151,18 @@ public class AddHoliday extends HttpServlet {
 		entry.setYear(request.getParameter("year"));
 		
 		List<HolidayCalendarEntry> entries = (List<HolidayCalendarEntry>) getServletContext().getAttribute("entries");
-		entries.add(entry);
+		
+		//sorting algorithm
+		Collections.sort(entries, Comparator.comparing(HolidayCalendarEntry::getHolidayDate));
+		
+		for (HolidayCalendarEntry existingEntry : entries) {
+			response.sendRedirect(request.getContextPath() + "/HolidayCalendar");
+			return;
+		}
+		
+		HolidayCalendarEntry newEntry = new HolidayCalendarEntry(dateString, request.getParameter(holidayName));
+		entries.add(newEntry);
+		entries.sort(Comparator.comparing(HolidayCalendarEntry::getHolidayDate));
 		response.sendRedirect("HolidayCalendar");
 	}
 

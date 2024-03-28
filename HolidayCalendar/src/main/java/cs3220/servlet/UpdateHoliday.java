@@ -2,6 +2,7 @@ package cs3220.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -181,6 +182,10 @@ public class UpdateHoliday extends HttpServlet {
 		
 		entry.setHolidayDate(dateString);
 		entry.setHoliday(holidayName);
+		
+		//sorting algorithms 
+		List<HolidayCalendarEntry> entries = (List<HolidayCalendarEntry>) getServletContext().getAttribute("entries");
+		entries.sort(Comparator.comparing(HolidayCalendarEntry::getHolidayDate));
 		response.sendRedirect("HolidayCalendar");
 	}
 
